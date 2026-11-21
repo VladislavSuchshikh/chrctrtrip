@@ -30,12 +30,12 @@ f:{n:"Лес",t:"Лесной отшельник",d:"Уединение в хв�
 c:{n:"Мегаполис",t:"Энергичный урбанист",d:"Уикенд в неоновом Токио",l:"4–5 дней",a:"Архитектура, кухни мира, музеи, ночные огни",w:"Вы заряжаетесь от движения, людей и идей. Большой город с его ритмом и сюрпризами за каждым поворотом — ваша стихия."}
 };
 const P={
-m:'<path pathLength="1" d="M10 124L68 40L98 82L128 30L190 124Z"/><path pathLength="1" d="M56 62L68 40L80 62"/><circle pathLength="1" cx="164" cy="26" r="8"/>',
-s:'<circle pathLength="1" cx="100" cy="56" r="24"/><path pathLength="1" d="M10 92H190M32 108H168M58 124H142"/>',
-f:'<path pathLength="1" d="M30 120L55 60L80 120ZM85 120L110 30L135 120ZM130 120L150 70L170 120ZM10 130H190"/>',
-c:'<path pathLength="1" d="M15 125V75H45V125M55 125V30H92V125M102 125V60H132V125M142 125V85H182V125M10 125H190"/>'
+m:'<circle cx="152" cy="34" r="13" fill="url(#gsun)"/><path d="M0 140V94L50 38L84 82L120 26L200 120V140Z" fill="url(#gm)" opacity=".5"/><path d="M0 140V110L62 54L100 98L142 64L200 128V140Z" fill="url(#gm)"/><path d="M50 38L40 52L50 48L58 56ZM120 26L110 42L120 38L130 46Z" fill="#fff"/>',
+s:'<circle cx="100" cy="62" r="26" fill="url(#gsun)"/><path d="M0 84H200V140H0Z" fill="url(#gs)" opacity=".55"/><path d="M0 98Q25 90 50 98T100 98T150 98T200 98V140H0Z" fill="url(#gs)"/><path d="M34 110H72M104 118H150M58 128H112" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>',
+f:'<circle cx="164" cy="26" r="9" fill="#d1fae5" opacity=".8"/><path d="M8 124L30 70L52 124ZM60 124L84 56L108 124Z" fill="url(#gf)" opacity=".45"/><path d="M28 128L54 64L80 128ZM76 128L106 40L136 128ZM130 128L156 62L182 128Z" fill="url(#gf)"/><path d="M0 124H200V140H0Z" fill="#022c22"/>',
+c:'<rect x="12" y="72" width="30" height="68" fill="url(#gc)" opacity=".45"/><rect x="48" y="28" width="36" height="112" fill="url(#gc)"/><rect x="90" y="58" width="26" height="82" fill="url(#gc)" opacity=".7"/><rect x="122" y="42" width="34" height="98" fill="url(#gc)"/><rect x="162" y="78" width="28" height="62" fill="url(#gc)" opacity=".45"/><path d="M56 44H76M56 58H76M56 72H76M56 86H76M130 56H148M130 70H148M130 84H148M98 72H108M98 86H108" stroke="#fbcfe8" stroke-width="3" stroke-dasharray="4 5" opacity=".85"/>'
 };
-const svg=k=>`<svg class="draw" viewBox="0 0 200 140" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">${P[k]}</svg>`;
+const svg=k=>`<svg class="scn" viewBox="0 0 200 140" aria-hidden="true">${P[k]}</svg>`;
 const $=s=>document.querySelector(s),quiz=$('#quiz'),N=Q.length;
 const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
 let i=0,sc;
@@ -77,3 +77,6 @@ nav.onclick=()=>{nav.classList.remove('open');bg.setAttribute('aria-expanded','f
 
 const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+$('#mq').innerHTML=Array(4).fill(K.map(k=>`<span>${R[k].n}</span>`).join('')).join('');
+document.addEventListener('pointermove',e=>{const t=e.target.closest&&e.target.closest('.tile,.pcard,.fact,.card');if(t){const r=t.getBoundingClientRect();t.style.setProperty('--x',e.clientX-r.left+'px');t.style.setProperty('--y',e.clientY-r.top+'px')}});
