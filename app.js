@@ -40,7 +40,6 @@ const $=s=>document.querySelector(s),quiz=$('#quiz'),N=Q.length;
 const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
 let i=0,sc;
 
-$('#collage').innerHTML=K.map(k=>`<div class="tile">${svg(k)}<span>${R[k].n}</span></div>`).join('');
 $('#pgrid').innerHTML=K.map(k=>`<article class="pcard reveal">${svg(k)}<small>${R[k].n} · ${R[k].l}</small><h3>${R[k].d}</h3><p>${R[k].a}</p></article>`).join('');
 
 const intro=()=>{
